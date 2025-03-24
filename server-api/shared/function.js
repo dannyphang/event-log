@@ -12,6 +12,7 @@ function body(data) {
         tenantId: data.headers.tenantid ?? "",
         userId: data.headers.userid ?? "",
         headers: data.headers,
+        config: data.config,
     };
 }
 

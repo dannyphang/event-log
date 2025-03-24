@@ -3,6 +3,7 @@ import express from "express";
 const router = Router();
 import * as func from "../shared/function.js";
 import * as consoleImp from "../implementation/consoleLog.js";
+import { log } from "console";
 
 router.use(express.json());
 
@@ -11,7 +12,7 @@ router.post("/", async (req, res) => {
     try {
         consoleImp
             .createConsoleLog({
-                logBody: JSON.parse(JSON.stringify(func.body(req).data.createdActivitiesList)),
+                body: JSON.parse(JSON.stringify(func.body(req).data.errorDetails)),
             })
             .then((data) => {
                 res.status(200).json(func.responseModel({ data: data }));

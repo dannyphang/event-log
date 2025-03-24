@@ -1,15 +1,21 @@
 import * as consoleRepo from "../repository/consoleLog.repository.js";
 
-function createConsoleLog({ logBody }) {
+function createConsoleLog({ body }) {
     return new Promise((resolve, reject) => {
         try {
-            console.log(logBody);
-
-            logBody.createdDate = new Date();
-            logBody.modifiedDate = new Date();
+            let logBody = {
+                method: body.request.method,
+                baseUrl: body.request.headers.host,
+                path: body.request.url,
+                statusCode: body.statusCode ?? null,
+                createdDate: new Date(),
+                modifiedDate: new Date(),
+                errorMessage: body.message,
+                messageStack: body.stack,
+            };
 
             consoleRepo
-                .createConsole({ logBody: logBody })
+                .createConsole({ console: logBody })
                 .then((data) => {
                     resolve(data);
                 })
