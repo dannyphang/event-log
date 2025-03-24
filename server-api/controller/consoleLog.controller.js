@@ -10,6 +10,7 @@ router.use(express.json());
 // create log
 router.post("/", async (req, res) => {
     try {
+        console.log(func.body(req).data.errorDetails);
         consoleImp
             .createConsoleLog({
                 body: JSON.parse(JSON.stringify(func.body(req).data.errorDetails)),
