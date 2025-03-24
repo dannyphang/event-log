@@ -16,4 +16,17 @@ function createConsole({ console }) {
     });
 }
 
-export { createConsole };
+function getConsole() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const snapshot = await firebase.db.collection(consoleCollection).get();
+
+            const list = snapshot.docs.map((doc) => doc.data());
+            resolve(list);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+export { createConsole, getConsole };

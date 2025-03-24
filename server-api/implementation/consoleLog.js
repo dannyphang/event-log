@@ -28,4 +28,21 @@ function createConsoleLog({ body }) {
     });
 }
 
-export { createConsoleLog };
+function getAllConsoleLog() {
+    return new Promise((resolve, reject) => {
+        try {
+            consoleRepo
+                .getConsole()
+                .then((data) => {
+                    resolve(data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+export { createConsoleLog, getAllConsoleLog };

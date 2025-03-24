@@ -33,4 +33,28 @@ router.post("/", async (req, res) => {
     }
 });
 
+// get log
+router.get("/", async (req, res) => {
+    try {
+        consoleImp
+            .getAllConsoleLog()
+            .then((data) => {
+                res.status(200).json(func.responseModel({ data: data }));
+            })
+            .catch((error) => {
+                console.log("error", error);
+                func.responseModel({
+                    isSuccess: false,
+                    responseMessage: error,
+                });
+            });
+    } catch (error) {
+        console.log("error", error);
+        func.responseModel({
+            isSuccess: false,
+            responseMessage: error,
+        });
+    }
+});
+
 export default router;
