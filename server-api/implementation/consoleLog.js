@@ -4,9 +4,15 @@ function createConsoleLog({ body }) {
     return new Promise((resolve, reject) => {
         try {
             let logBody = {
-                method: body.request.method,
-                baseUrl: body.request.headers.host,
-                path: body.request.url,
+                project: body.project,
+                module: body.module,
+                server: body.server,
+                serverType: body.serverType,
+                method: body.serverType === "API" ? body.request.method : null,
+                baseUrl: body.serverType === "API" ? body.request.headers.host : body.socket.baseUrl,
+                path: body.serverType === "API" ? body.request.url : body.socket.path,
+                clientIp: body.serverType === "SOCKET" ? null : body.socket.clientIp,
+                clientId: body.serverType === "SOCKET" ? null : body.socket.clientId,
                 statusCode: body.statusCode ?? null,
                 createdDate: new Date(),
                 modifiedDate: new Date(),

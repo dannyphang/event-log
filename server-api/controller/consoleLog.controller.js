@@ -10,21 +10,29 @@ router.use(express.json());
 // create log
 router.post("/", async (req, res) => {
     try {
-        console.log(func.body(req).data.errorDetails);
-        consoleImp
-            .createConsoleLog({
-                body: JSON.parse(JSON.stringify(func.body(req).data.errorDetails)),
-            })
-            .then((data) => {
-                res.status(200).json(func.responseModel({ data: data }));
-            })
-            .catch((error) => {
-                console.log("error", error);
+        if (func.body(req).data.errorDetails) {
+            consoleImp
+                .createConsoleLog({
+                    body: JSON.parse(JSON.stringify(func.body(req).data.errorDetails)),
+                })
+                .then((data) => {
+                    res.status(200).json(func.responseModel({ data: data }));
+                })
+                .catch((error) => {
+                    console.log("error", error);
+                    func.responseModel({
+                        isSuccess: false,
+                        responseMessage: error,
+                    });
+                });
+        } else {
+            res.status(500).json(
                 func.responseModel({
                     isSuccess: false,
-                    responseMessage: error,
-                });
-            });
+                    responseMessage: "Empty body",
+                })
+            );
+        }
     } catch (error) {
         console.log("error", error);
         func.responseModel({
