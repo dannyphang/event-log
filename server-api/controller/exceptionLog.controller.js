@@ -2,8 +2,7 @@ import { Router } from "express";
 import express from "express";
 const router = Router();
 import * as func from "../shared/function.js";
-import * as consoleImp from "../implementation/consoleLog.js";
-import { log } from "console";
+import * as exceptionImp from "../implementation/exceptionLog.js";
 
 router.use(express.json());
 
@@ -11,8 +10,8 @@ router.use(express.json());
 router.post("/", async (req, res) => {
     try {
         if (func.body(req).data.errorDetails) {
-            consoleImp
-                .createConsoleLog({
+            exceptionImp
+                .createExceptionLog({
                     body: JSON.parse(JSON.stringify(func.body(req).data.errorDetails)),
                 })
                 .then((data) => {
@@ -47,8 +46,8 @@ router.post("/", async (req, res) => {
 // get log
 router.get("/", async (req, res) => {
     try {
-        consoleImp
-            .getAllConsoleLog()
+        exceptionImp
+            .getAllExceptionLog()
             .then((data) => {
                 res.status(200).json(func.responseModel({ data: data }));
             })

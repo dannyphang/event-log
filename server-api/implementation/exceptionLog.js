@@ -1,6 +1,6 @@
-import * as consoleRepo from "../repository/consoleLog.repository.js";
+import * as exceptionRepo from "../repository/exceptionLog.repository.js";
 
-function createConsoleLog({ body }) {
+function createExceptionLog({ body }) {
     return new Promise((resolve, reject) => {
         try {
             let logBody = {
@@ -21,8 +21,8 @@ function createConsoleLog({ body }) {
                 statusId: 1,
             };
 
-            consoleRepo
-                .createConsole({ console: logBody })
+            exceptionRepo
+                .createException({ exception: logBody })
                 .then((data) => {
                     resolve(data);
                 })
@@ -35,11 +35,11 @@ function createConsoleLog({ body }) {
     });
 }
 
-function getAllConsoleLog() {
+function getAllExceptionLog() {
     return new Promise((resolve, reject) => {
         try {
-            consoleRepo
-                .getConsole()
+            exceptionRepo
+                .getException()
                 .then((data) => {
                     resolve(data);
                 })
@@ -52,4 +52,4 @@ function getAllConsoleLog() {
     });
 }
 
-export { createConsoleLog, getAllConsoleLog };
+export { createExceptionLog, getAllExceptionLog };

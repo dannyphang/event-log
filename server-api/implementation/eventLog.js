@@ -4,6 +4,7 @@ function createEventLog({ body }) {
     return new Promise((resolve, reject) => {
         try {
             let logBody = {
+                project: body.project,
                 description: body.description,
                 module: body.module,
                 eventName: body.eventName,

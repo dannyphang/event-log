@@ -1,6 +1,6 @@
 //import { createServer } from "http";
 import express from "express";
-import consoleLogController from "./controller/consoleLog.controller.js";
+import exceptionLogController from "./controller/exceptionLog.controller.js";
 import eventLogController from "./controller/eventLog.controller.js";
 import cors from "cors";
 import { fileURLToPath } from "url";
@@ -38,7 +38,7 @@ app.use(
     })
 );
 
-app.use("/console", consoleLogController);
+app.use("/exception", exceptionLogController);
 app.use("/event", eventLogController);
 
 app.listen(port, () => {
