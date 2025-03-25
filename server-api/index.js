@@ -1,6 +1,7 @@
 //import { createServer } from "http";
 import express from "express";
 import consoleLogController from "./controller/consoleLog.controller.js";
+import eventLogController from "./controller/eventLog.controller.js";
 import cors from "cors";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -38,6 +39,7 @@ app.use(
 );
 
 app.use("/console", consoleLogController);
+app.use("/event", eventLogController);
 
 app.listen(port, () => {
     console.log(`server is running at port: ${port}... (${new Date()})`);

@@ -18,6 +18,7 @@ function createConsoleLog({ body }) {
                 modifiedDate: new Date(),
                 errorMessage: body.message ?? null,
                 messageStack: body.stack ?? null,
+                statusId: 1,
             };
 
             consoleRepo

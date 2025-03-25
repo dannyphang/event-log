@@ -20,10 +20,12 @@ router.post("/", async (req, res) => {
                 })
                 .catch((error) => {
                     console.log("error", error);
-                    func.responseModel({
-                        isSuccess: false,
-                        responseMessage: error,
-                    });
+                    res.status(400).json(
+                        func.responseModel({
+                            isSuccess: false,
+                            responseMessage: error,
+                        })
+                    );
                 });
         } else {
             res.status(500).json(
@@ -52,17 +54,21 @@ router.get("/", async (req, res) => {
             })
             .catch((error) => {
                 console.log("error", error);
-                func.responseModel({
-                    isSuccess: false,
-                    responseMessage: error,
-                });
+                res.status(400).json(
+                    func.responseModel({
+                        isSuccess: false,
+                        responseMessage: error,
+                    })
+                );
             });
     } catch (error) {
         console.log("error", error);
-        func.responseModel({
-            isSuccess: false,
-            responseMessage: error,
-        });
+        res.status(500).json(
+            func.responseModel({
+                isSuccess: false,
+                responseMessage: error,
+            })
+        );
     }
 });
 
