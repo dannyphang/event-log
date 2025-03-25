@@ -38,7 +38,7 @@ app.use(
     })
 );
 
-app.use("/console", consoleLogController);
+app.use("/exception", consoleLogController);
 app.use("/event", eventLogController);
 
 app.listen(port, () => {

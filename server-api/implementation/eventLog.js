@@ -1,4 +1,5 @@
 import * as eventRepo from "../repository/eventLog.repository.js";
+import * as func from "../shared/function.js";
 
 function createEventLog({ body }) {
     return new Promise((resolve, reject) => {
@@ -42,8 +43,14 @@ function getAllEventLog() {
         try {
             eventRepo
                 .getEvent()
-                .then((data) => {
-                    resolve(data);
+                .then(async (list) => {
+                    await Promise.all(
+                        list.map(async (data) => {
+                            data.createdDate = func.convertFirebaseDateFormat(data.createdDate);
+                            data.modifiedDate = func.convertFirebaseDateFormat(data.modifiedDate);
+                        })
+                    );
+                    resolve(list);
                 })
                 .catch((error) => {
                     reject(error);

@@ -1,0 +1,4 @@
+{
+  "baseUrl": "https://log-five-theta.vercel.app",
+  "auth": "https://jwt-authentication-fawn.vercel.app"
+}

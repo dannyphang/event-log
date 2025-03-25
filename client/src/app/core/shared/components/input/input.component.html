@@ -8,9 +8,18 @@
   >
   </app-base-label>
 
-  <p-iconField [iconPosition]="iconLeftStyle != '' ? 'left' : 'right'">
+  <p-iconField
+    [iconPosition]="iconLeftStyle == '' || showClear ? 'right' : 'left'"
+  >
     <p-inputIcon
       [styleClass]="iconLeftStyle != '' ? iconLeftStyle : iconRightStyle"
+    />
+
+    <p-inputIcon
+      styleClass="pi pi-times"
+      *ngIf="showClear"
+      class="tw-cursor-pointer"
+      (click)="clearField()"
     />
     <div
       class="input-container"

@@ -1,4 +1,4 @@
 {
-  "serverBaseUrl": "https://crm-six-mauve.vercel.app",
-  "localBaseUrl": "http://localhost:1113"
+  "baseUrl": "http://localhost:1114",
+  "auth": "http://localhost:1110"
 }
