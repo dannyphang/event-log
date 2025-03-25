@@ -19,7 +19,7 @@ function createConsole({ console }) {
 function getConsole() {
     return new Promise(async (resolve, reject) => {
         try {
-            const snapshot = await firebase.db.collection(consoleCollection).get();
+            const snapshot = await firebase.db.collection(consoleCollection).orderBy("modifiedDate", "desc").orderBy("createdDate", "desc").where("statusId", "==", 1).get();
 
             const list = snapshot.docs.map((doc) => doc.data());
             resolve(list);
