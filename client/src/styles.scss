@@ -15,9 +15,13 @@
 @import "../node_modules/quill/dist/quill.snow.css";
 
 :root {
-  --content-gap: 15px;
+  --content-gap-xxl: 22px;
+  --content-gap-xl: 18px;
+  --content-gap-l: 16px;
+  --content-gap: 12px;
   --content-gap-s: 8px;
   --content-gap-xs: 6px;
+  --content-gap-xxs: 4px;
 }
 
 html {

@@ -30,6 +30,7 @@ export class BaseInputComponent
   @Input() autoFocus: boolean = false;
   @Input() iconLeftStyle: string = '';
   @Input() iconRightStyle: string = '';
+  @Input() showClear: boolean = false;
   @ViewChild('prefix_content', { static: true })
   prefix_content!: ElementRef<HTMLDivElement>;
 
@@ -69,5 +70,9 @@ export class BaseInputComponent
 
   onBlur() {
     if (!!this.onBlurFunction) return this.onBlurFunction();
+  }
+
+  clearField() {
+    this.fieldControl.setValue(null, { emitEvent: false });
   }
 }

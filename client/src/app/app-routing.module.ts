@@ -8,16 +8,27 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      // {
-      //   path: '',
-      //   loadChildren: () => import('./module/home/home.module').then(m => m.HomeModule),
-      //   data: { breadcrumb: '', title: 'Home' }
-      // },
-      // {
-      //   path: 'contact',
-      //   loadChildren: () => import('./module/contact/contact.module').then(m => m.ContactModule),
-      //   data: { breadcrumb: 'Contact', title: 'Contact' },
-      // },
+      {
+        path: '',
+        loadChildren: () => import('./module/home/home.module').then(m => m.HomeModule),
+        data: { breadcrumb: '', title: 'Home' }
+      },
+      {
+        path: 'exception',
+        loadChildren: () => import('./module/exception-log/exception-log.module').then(m => m.ExceptionLogModule),
+        data: {
+          breadcrumb: 'Exception',
+          title: 'Exception',
+        },
+      },
+      {
+        path: 'event',
+        loadChildren: () => import('./module/event-log/event-log.module').then(m => m.EventLogModule),
+        data: {
+          breadcrumb: 'Event Log',
+          title: 'Event Log',
+        },
+      },
     ]
   },
   // {
