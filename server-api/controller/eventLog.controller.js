@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-// get log
+// get all log
 router.get("/", async (req, res) => {
     try {
         eventImp
@@ -50,6 +50,36 @@ router.get("/", async (req, res) => {
                     func.responseModel({
                         isSuccess: false,
                         responseMessage: error,
+                    })
+                );
+            });
+    } catch (error) {
+        console.log("error", error);
+        res.status(500).json(
+            func.responseModel({
+                isSuccess: false,
+                responseMessage: error,
+            })
+        );
+    }
+});
+
+// search log
+router.post("/search", async (req, res) => {
+    try {
+        eventImp
+            .searchEventLog({
+                body: func.body(req).data.params,
+            })
+            .then((data) => {
+                res.status(200).json(func.responseModel({ data: data }));
+            })
+            .catch((error) => {
+                console.log("error", error);
+                res.status(500).json(
+                    func.responseModel({
+                        isSuccess: false,
+                        responseMessage: error.message,
                     })
                 );
             });

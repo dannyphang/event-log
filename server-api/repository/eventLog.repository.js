@@ -29,4 +29,23 @@ function getEvent() {
     });
 }
 
-export { createEvent, getEvent };
+function searchEvent({ params }) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let query = firebase.db.collection(eventCollection);
+
+            // Apply dynamic where conditions
+            Object.entries(params).forEach(([key, value]) => {
+                query = query.where(key, "==", value);
+            });
+            const snapshot = await query.get();
+            const list = snapshot.docs.map((doc) => doc.data());
+
+            resolve(list);
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+export { createEvent, getEvent, searchEvent };

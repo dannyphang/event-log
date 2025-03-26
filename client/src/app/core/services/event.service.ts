@@ -14,9 +14,12 @@ export class EventService {
     ) { }
 
     getAllEvents(): Observable<ResponseModel<EventLogDto[]>> {
-        return this.coreHttp.get<EventLogDto[]>('event');
+        return this.coreHttp.get<EventLogDto[]>('event').pipe();
     }
 
+    searchEvents(params: any[]): Observable<ResponseModel<EventLogDto[]>> {
+        return this.coreHttp.post<EventLogDto[]>('event/search', { params }).pipe();
+    }
 }
 
 export class EventLogDto extends BasedDto {

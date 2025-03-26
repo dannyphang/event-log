@@ -1,10 +1,22 @@
-::ng-deep .table {
-  .p-datatable {
-    padding: var(--content-gap-l);
-    padding-bottom: 0;
+::ng-deep {
+  .table {
+    .p-datatable {
+      padding: 0 var(--content-gap-l);
 
-    // .p-datatable-header {
-    //   padding: var(--content-gap-xs) var(--content-gap-s);
-    // }
+      // .p-datatable-header {
+      //   padding: var(--content-gap-xs) var(--content-gap-s);
+      // }
+    }
+  }
+  .event-panel {
+    .p-panel {
+      margin-left: var(--content-gap-l);
+      margin-right: var(--content-gap-l);
+      margin-bottom: var(--content-gap-l);
+    }
+
+    .p-panel-content {
+      padding: var(--content-gap-l);
+    }
   }
 }

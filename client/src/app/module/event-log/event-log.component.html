@@ -1,4 +1,49 @@
-<div class="tw-w-screen">
+<div class="">
+  <div
+    class="tw-flex tw-justify-between tw-items-center tw-p-[var(--content-gap-l)]"
+  >
+    <div class="search-div tw-flex tw-items-center tw-gap-[var(--content-gap)]">
+      <app-base-input
+        [placeholder]="'Search Keyword'"
+        [fieldControl]="searchFormControl"
+        [showClear]="true"
+      ></app-base-input>
+
+      <app-base-dropdown
+        [options]="searchOptions"
+        [fieldControl]="searchOptionsFormControl"
+        [showClear]="false"
+      ></app-base-dropdown>
+
+      <app-base-button
+        [isTextStyle]="true"
+        [label]="'Advanced Filter'"
+        (onClick)="advancedFilter()"
+      ></app-base-button>
+    </div>
+  </div>
+  <p-panel
+    *ngIf="!isSearchCollapsed"
+    [collapsed]="isSearchCollapsed"
+    [showHeader]="false"
+    class="event-panel"
+  >
+    <div>
+      <app-base-form [formConfig]="advancedSearchFormConfig"></app-base-form>
+      <div class="btn-footer-div tw-flex tw-justify-between tw-items-center">
+        <app-base-button
+          [outlined]="true"
+          [label]="'Clear Filters'"
+          (onClick)="clearFilters()"
+        ></app-base-button>
+        <app-base-button
+          [label]="'Search'"
+          (onClick)="searchBtn()"
+        ></app-base-button>
+      </div>
+    </div>
+  </p-panel>
+
   <p-table
     #dt2
     [value]="eventList"
@@ -15,7 +60,7 @@
     [sortOrder]="-1"
     class="table"
   >
-    <ng-template pTemplate="caption">
+    <!-- <ng-template pTemplate="caption">
       <div class="tw-flex tw-justify-between tw-items-center">
         <div
           class="search-div tw-flex tw-items-center tw-gap-[var(--content-gap)]"
@@ -40,11 +85,20 @@
           ></app-base-button>
         </div>
       </div>
-    </ng-template>
+    </ng-template> -->
 
     <ng-template pTemplate="header" let-columns>
       <tr class="">
-        <th><p-tableHeaderCheckbox /></th>
+        <th>
+          <div class="tw-flex tw-justify-center tw-items-center">
+            <p-tableHeaderCheckbox />
+            <app-base-button
+              [iconName]="'pi pi-trash'"
+              [outlined]="true"
+              *ngIf="selectedEvents.length > 0"
+            ></app-base-button>
+          </div>
+        </th>
         <th *ngFor="let col of columns" [pSortableColumn]="col.field">
           {{ col.header }} <p-sortIcon [field]="col.field" />
         </th>
@@ -53,7 +107,11 @@
 
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr class="">
-        <td><p-tableCheckbox [value]="rowData" /></td>
+        <td>
+          <div class="tw-flex tw-justify-center tw-items-center">
+            <p-tableCheckbox [value]="rowData" />
+          </div>
+        </td>
         <td *ngFor="let col of columns">
           <div *ngIf="col.field === 'modifiedDate'">
             {{ formatDate(rowData[col.field]) | date : "dd/MM/yyyy HH:mm:ss" }}
