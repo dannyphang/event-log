@@ -62,4 +62,29 @@ function getAllEventLog() {
     });
 }
 
-export { createEventLog, getAllEventLog };
+function searchEventLog({ body }) {
+    return new Promise((resolve, reject) => {
+        try {
+            eventRepo
+                .searchEvent({
+                    params: body,
+                })
+                .then(async (list) => {
+                    await Promise.all(
+                        list.map(async (data) => {
+                            data.createdDate = func.convertFirebaseDateFormat(data.createdDate);
+                            data.modifiedDate = func.convertFirebaseDateFormat(data.modifiedDate);
+                        })
+                    );
+                    resolve(list);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+export { createEventLog, getAllEventLog, searchEventLog };
