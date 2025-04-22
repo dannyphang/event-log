@@ -1,4 +1,5 @@
 import * as consoleRepo from "../repository/consoleLog.repository.js";
+import * as func from "../shared/function.js";
 
 function createConsoleLog({ body }) {
   return new Promise((resolve, reject) => {
