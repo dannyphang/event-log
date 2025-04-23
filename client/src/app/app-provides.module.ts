@@ -17,6 +17,7 @@ import { MATERIAL_SANITY_CHECKS } from '@angular/material/core';
 import { MessageService } from 'primeng/api';
 import { CoreAuthService } from './core/services/core-auth.service';
 import { CoreHttpService } from './core/services/core-http.service';
+import { DialogService } from 'primeng/dynamicdialog';
 
 export const allBaseUIForm = {
     [CONTROL_TYPE.Textbox]: BaseInputComponent,
@@ -49,4 +50,5 @@ export const providers = [
     MessageService,
     CoreHttpService,
     CoreAuthService,
+    DialogService
 ];

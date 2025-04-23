@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 import { FormControl } from '@angular/forms';
 import { Table } from 'primeng/table';
 import { debounceTime } from 'rxjs';
@@ -7,6 +8,7 @@ import { EventLogDto, EventService } from '../../core/services/event.service';
 import { ToastService } from '../../core/services/toast.service';
 import { ROW_PER_PAGE_DEFAULT_LIST, ROW_PER_PAGE_DEFAULT } from '../../core/shared/constants/common.constants';
 import { ExceptionLogDto, ExceptionService } from '../../core/services/exception.service';
+import { ExceptionDialogComponent } from './exception-dialog/exception-dialog.component';
 
 interface Column {
   field: string;
@@ -31,7 +33,8 @@ export class ExceptionLogComponent {
 
   constructor(
     private exceptionService: ExceptionService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private dialogService: DialogService
   ) {
 
   }
@@ -113,5 +116,15 @@ export class ExceptionLogComponent {
 
   formatDate(dateValue: string) {
     return new Date(dateValue);
+  }
+
+  onRowSelect(data: ExceptionLogDto) {
+    console.log(data);
+    this.dialogService.open(ExceptionDialogComponent, {
+      data: data,
+      header: 'Exception Detail',
+      width: '70%',
+    })
+
   }
 }

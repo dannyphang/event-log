@@ -1,0 +1,48 @@
+<div class="tw-flex tw-flex-wrap tw-gap-y-[var(--content-gap)]">
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">UID</strong>
+    <span class="tw-w-[80%]">{{ exception.uid }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Message</strong>
+    <span class="tw-w-[80%]">{{ exception.errorMessage }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Module</strong>
+    <span class="tw-w-[80%]">{{ exception.module }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Method</strong>
+    <span class="tw-w-[80%]">{{ exception.method }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Project</strong>
+    <span class="tw-w-[80%]">{{ exception.project }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Server</strong>
+    <span class="tw-w-[80%]">{{ exception.server }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Base URL</strong>
+    <span class="tw-w-[80%]">{{ exception.baseUrl }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Status Code</strong>
+    <span class="tw-w-[80%]">{{ exception.statusCode }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Created</strong>
+    <span class="tw-w-[80%]">{{ returnDate(exception.createdDate!) }}</span>
+  </div>
+  <div class="tw-flex tw-w-full">
+    <strong class="tw-w-[20%]">Error Stack</strong>
+    <span class="tw-w-[80%]">
+      <pre
+        class="tw-p-[var(--content-gap-xs)] tw-border tw-border-solid tw-overflow-auto tw-rounded tw-border-gray-200 tw-bg-gray-50 tw-m-0"
+        *ngIf="exception.messageStack"
+        >{{ exception.messageStack }}</pre
+      >
+    </span>
+  </div>
+</div>

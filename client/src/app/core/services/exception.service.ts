@@ -20,6 +20,7 @@ export class ExceptionService {
 }
 
 export class ExceptionLogDto extends BasedDto {
+    uid: string;
     project: string;
     module: string;
     server?: string;
