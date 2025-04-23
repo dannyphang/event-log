@@ -7,11 +7,13 @@ import { CommonSharedModule } from '../../core/shared/modules/common-shared.modu
 import { MaterialModule } from '../../core/shared/modules/material.module';
 import { PrimeNgModule } from '../../core/shared/modules/primeng.module';
 import { ExceptionLogComponent } from './exception-log.component';
+import { ExceptionDialogComponent } from './exception-dialog/exception-dialog.component';
 
 
 @NgModule({
   declarations: [
-    ExceptionLogComponent
+    ExceptionLogComponent,
+    ExceptionDialogComponent
   ],
   imports: [
     CommonModule,
