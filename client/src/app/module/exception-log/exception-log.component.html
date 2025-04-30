@@ -6,13 +6,19 @@
     [columns]="cols"
     dataKey="uid"
     styleClass="p-datatable-gridlines p-datatable-striped"
-    [rows]="ROW_PER_PAGE_DEFAULT"
+    [rows]="rows"
     [rowsPerPageOptions]="ROW_PER_PAGE_DEFAULT_LIST"
+    [first]="first"
+    [showCurrentPageReport]="true"
     [loading]="loading"
     [paginator]="true"
     [tableStyle]="{ 'min-width': '75rem' }"
     sortField="modifiedDate"
     [sortOrder]="-1"
+    [currentPageReportTemplate]="
+      '{first} - ' + (nextData | async) + ' of {totalRecords}'
+    "
+    (onPage)="pageChange($event)"
     class="table"
   >
     <ng-template pTemplate="caption">

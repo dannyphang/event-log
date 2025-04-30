@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Table } from 'primeng/table';
-import { debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 import { OptionsModel } from '../../core/services/components.service';
 import { EventLogDto, EventService } from '../../core/services/event.service';
 import { ToastService } from '../../core/services/toast.service';
@@ -21,6 +21,9 @@ interface Column {
 export class ExceptionLogComponent {
   ROW_PER_PAGE_DEFAULT_LIST = ROW_PER_PAGE_DEFAULT_LIST;
   ROW_PER_PAGE_DEFAULT = ROW_PER_PAGE_DEFAULT;
+  first = 0;
+  rows = this.ROW_PER_PAGE_DEFAULT;
+  nextData = new BehaviorSubject<number>(this.first + this.rows);
   exceptionList: ExceptionLogDto[] = [];
   selectedExceptions: ExceptionLogDto[] = [];
   loading: boolean = true;
@@ -113,5 +116,19 @@ export class ExceptionLogComponent {
 
   formatDate(dateValue: string) {
     return new Date(dateValue);
+  }
+
+  next() {
+    this.first = this.first + this.ROW_PER_PAGE_DEFAULT;
+  }
+
+  prev() {
+    this.first = this.first - this.ROW_PER_PAGE_DEFAULT;
+  }
+
+  pageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.nextData.next(this.first + this.rows);
   }
 }
