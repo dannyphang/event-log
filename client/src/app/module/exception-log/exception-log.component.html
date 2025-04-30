@@ -58,7 +58,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr class="">
+      <tr class="" (click)="onRowSelect(rowData)">
         <td><p-tableCheckbox [value]="rowData" /></td>
         <td *ngFor="let col of columns">
           <div *ngIf="col.field === 'modifiedDate'">
