@@ -60,11 +60,11 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr class="" (click)="onRowSelect(rowData)">
         <td><p-tableCheckbox [value]="rowData" /></td>
-        <td *ngFor="let col of columns">
-          <div *ngIf="col.field === 'modifiedDate'">
+        <td *ngFor="let col of columns" [pTooltip]="rowData[col.field]">
+          <div *ngIf="col.field === 'modifiedDate'" class="text-dots">
             {{ formatDate(rowData[col.field]) | date : "dd/MM/yyyy HH:mm:ss" }}
           </div>
-          <div *ngIf="col.field !== 'modifiedDate'">
+          <div *ngIf="col.field !== 'modifiedDate'" class="text-dots">
             {{ rowData[col.field] }}
           </div>
         </td>
